@@ -1,1 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="NHTest"
+    namespace="NHTest">
+
+  <class name="Author" table="author">
+    <id name="AuthorId" column="authorid">
+      <generator class="guid"/>
+    </id>
+    <property name="Name" column="name" length="50"/>
+    <!--<set name="Books">
+      <key column="bookid"/>
+      <one-to-many class="Book"/>
+    </set>-->
+  </class>
+</hibernate-mapping>

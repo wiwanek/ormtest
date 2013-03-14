@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
+using System;
 
 namespace NHTest
 {
@@ -10,6 +9,21 @@ namespace NHTest
     {
         static void Main(string[] args)
         {
+            try
+            {
+                Configuration config = new Configuration();
+                config.Configure();
+                config.AddAssembly(typeof(Author).Assembly);
+                ISessionFactory sessionFactory = config.BuildSessionFactory();
+
+                var schema = new SchemaExport(config);
+                schema.Create(true, true);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.ToString());
+            }
+            Console.ReadKey();
         }
     }
 }

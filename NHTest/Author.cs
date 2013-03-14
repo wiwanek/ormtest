@@ -7,12 +7,12 @@ namespace NHTest
     {
         public Author()
         {
-            Books = new HashedSet<Book>();
+          //  Books = new HashedSet<Book>();
         }
 
         public virtual Guid AuthorId { get; set; }
         public virtual string Name { get; set; }
 
-        public virtual ISet<Book> Books { get; set; }
+        //public virtual ISet<Book> Books { get; set; }
     }
 }
