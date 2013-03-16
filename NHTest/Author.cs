@@ -3,7 +3,7 @@ using System;
 
 namespace NHTest
 {
-    class Author
+    public class Author
     {
         public Author()
         {

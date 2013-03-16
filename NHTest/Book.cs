@@ -3,7 +3,7 @@
 
 namespace NHTest
 {
-    class Book
+    public class Book
     {
         public virtual Guid BookId { get; set; }
         public virtual string Title { get; set; }
