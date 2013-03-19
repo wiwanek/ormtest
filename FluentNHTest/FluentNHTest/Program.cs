@@ -63,11 +63,8 @@ namespace FluentNHTest
         public static ISessionFactory Configure()
         {
             return Fluently.Configure()
-                //which database
-                .Diagnostics(x => x.OutputToConsole())
                 .Database(
                     PostgreSQLConfiguration.PostgreSQL82
-                //connection string from app.config
                         .ConnectionString(
                             cs => cs.FromConnectionStringWithKey("ORMTest"))
                         .ShowSql())
