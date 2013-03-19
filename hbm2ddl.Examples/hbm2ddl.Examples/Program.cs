@@ -17,12 +17,8 @@ namespace hbm2ddl.Examples
             {
                 Configuration config = new Configuration();
                 config.Configure();
-                //config.AddAssembly(typeof(Author).Assembly);
                 config.AddClass(typeof(Author));
-                //config.AddFile("Mappings/Author.hbm.xml");
-                //config.AddResource("Author.hbm.xml", Assembly.GetExecutingAssembly());
-                //config.AddInputStream();
-
+                
                 var schema = new SchemaExport(config);
                 schema.Create(true, true);
 
