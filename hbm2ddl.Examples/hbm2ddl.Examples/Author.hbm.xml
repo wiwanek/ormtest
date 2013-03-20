@@ -7,9 +7,5 @@
       <generator class="guid"/>
     </id>
     <property name="Name" column="name" length="50"/>
-    <!--<set name="Books">
-      <key column="bookid"/>
-      <one-to-many class="Book"/>
-    </set>-->
   </class>
 </hibernate-mapping>

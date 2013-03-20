@@ -18,7 +18,7 @@ namespace hbm2ddl.Examples
                 Configuration config = new Configuration();
                 config.Configure();
                 config.AddClass(typeof(Author));
-                
+
                 var schema = new SchemaExport(config);
                 schema.Create(true, true);
 
@@ -32,10 +32,9 @@ namespace hbm2ddl.Examples
                     Console.Error.WriteLine("Validation failed... " + he.Message);
                     Console.WriteLine("Updating schema...");
                     new SchemaUpdate(config).Execute(true, true);
-                
+
                 }
                 new SchemaExport(config).Drop(true, true);
-
                 
             }
             catch (Exception e)
