@@ -10,7 +10,7 @@ namespace AttrNHTest
     [Class]
     public class Author
     {
-        [Id(TypeType=typeof(Guid))]
+        [Id(Name = "AuthorId")]
         public virtual Guid AuthorId { get; set; }
 
         [Property]
