@@ -11,7 +11,7 @@ namespace AttrNHTest
         [Property(Length=200)]
         public virtual string Title { get; set; }
 
-        [ManyToOne(ClassType=typeof(Author))]
+        [ManyToOne]
         public virtual Author Author { get; set; }
     }
 }
