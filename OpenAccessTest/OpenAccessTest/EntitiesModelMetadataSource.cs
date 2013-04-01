@@ -16,7 +16,7 @@ namespace OpenAccessTest
             MappingConfiguration<Book> bookConfiguration = new MappingConfiguration<Book>();
             bookConfiguration.MapType().ToTable("Books");
             bookConfiguration.HasProperty(p => p.BookId).IsIdentity();
-            //bookConfiguration.HasAssociation(p => p.Author).
+            bookConfiguration.HasAssociation(p => p.Author);
             configurations.Add(bookConfiguration);
 
             return configurations;
