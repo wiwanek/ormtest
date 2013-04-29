@@ -11,6 +11,7 @@ namespace LazyEagerLoadingEF
     {
         static void Main(string[] args)
         {
+            Database.SetInitializer<LibraryContext>(null);
             using (var context = new LibraryContext())
             {
                 Author b = context.Authors.Add(new Author { AuthorId = Guid.NewGuid(), Name = "Frank Herbert" });
@@ -31,6 +32,19 @@ namespace LazyEagerLoadingEF
             }
             using (var context = new LibraryContext())
             {
+                var authors = context.Authors.Include("Books").ToList();
+
+                foreach (var author in authors)
+                {
+                    Console.WriteLine(author.Name + " \nBooks: ");
+                    foreach (var book in author.Books)
+                    {
+                        Console.WriteLine("\t " + book.Title);
+                    }
+                }
+            }
+            using (var context = new LibraryContext())
+            {
                 var books = context.Books.ToList();
                 foreach (var book in books)
                 {
@@ -42,6 +56,7 @@ namespace LazyEagerLoadingEF
                 }
                 context.SaveChanges();
             }
+            Console.ReadKey();
         }
     }
 }
