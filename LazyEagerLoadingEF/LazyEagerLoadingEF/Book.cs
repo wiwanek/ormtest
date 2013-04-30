@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LazyEagerLoadingEF
 {
     [Table("book", Schema = "public")]
-    class Book
+    public class Book
     {
         [Key]
         [Column("bookid"), Required]

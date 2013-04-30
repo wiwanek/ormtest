@@ -24,6 +24,10 @@ namespace LazyEagerLoadingEF
                 context.SaveChanges();
 
             }
+            Console.WriteLine();
+            Console.WriteLine("#####################");
+            Console.WriteLine();
+
             using (var context = new LibraryContext())
             {
                 var books = context.Books.Include("Author").ToList();
@@ -33,6 +37,9 @@ namespace LazyEagerLoadingEF
                     Console.WriteLine(book.Title + " Author: " + book.Author.Name);
                 }
             }
+            Console.WriteLine();
+            Console.WriteLine("#####################");
+            Console.WriteLine();
             using (var context = new LibraryContext())
             {
                 var authors = context.Authors.Include("Books").ToList();
@@ -46,33 +53,29 @@ namespace LazyEagerLoadingEF
                     }
                 }
             }
+            Console.WriteLine();
+            Console.WriteLine("#####################");
+            Console.WriteLine();
             using (var context = new LibraryContext())
             {
                 var books = context.Books.ToList();
-
                 foreach (var book in books)
                 {
-                    Console.WriteLine("\nBefore Load(): \n" + book.Title + " Author: " + (book.Author == null ? "<null>" : book.Author.Name));
-                    context.Entry<Book>(book).Reference("Author").Load();
-                    Console.WriteLine("\nAfter Load(): \n" + book.Title + " Author: " + (book.Author == null ? "<null>" : book.Author.Name));
-                    //Console.ReadKey();
+                    Console.WriteLine(book.Title + " Author: " + (book.Author == null ? "<null>" : book.Author.Name));
                 }
                 
             }
+            Console.WriteLine();
+            Console.WriteLine("#####################");
+            Console.WriteLine();
             using (var context = new LibraryContext())
             {
                 var authors = context.Authors.ToList();
 
                 foreach (var author in authors)
                 {
-                    Console.WriteLine(author.Name + " \nBooks: \nBefore Load():");
-
-                    foreach (var book in author.Books)
-                    {
-                        Console.WriteLine("\t " + book.Title);
-                    }
-                    context.Entry<Author>(author).Collection<Book>(a => a.Books).Load();
-                    Console.WriteLine(" \nAfter Load():");
+                    Console.WriteLine(author.Name + " \nBooks: ");
+                    
                     foreach (var book in author.Books)
                     {
                         Console.WriteLine("\t " + book.Title);

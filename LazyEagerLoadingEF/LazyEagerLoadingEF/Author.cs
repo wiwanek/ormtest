@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LazyEagerLoadingEF
 {
     [Table("author", Schema = "public")]
-    class Author
+    public class Author
     {
         public Author()
         {
