@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LazyEagerLoadingNH", "LazyEagerLoadingNH\LazyEagerLoadingNH.csproj", "{AB54E56E-D67E-48FE-8E90-6DF794D524FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB54E56E-D67E-48FE-8E90-6DF794D524FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB54E56E-D67E-48FE-8E90-6DF794D524FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB54E56E-D67E-48FE-8E90-6DF794D524FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB54E56E-D67E-48FE-8E90-6DF794D524FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

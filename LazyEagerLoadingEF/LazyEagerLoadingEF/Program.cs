@@ -61,7 +61,7 @@ namespace LazyEagerLoadingEF
                 var books = context.Books.ToList();
                 foreach (var book in books)
                 {
-                    Console.WriteLine(book.Title + " Author: " + (book.Author == null ? "<null>" : book.Author.Name));
+                    Console.WriteLine(book.Title + " Author: " + book.Author.Name);
                 }
                 
             }
@@ -82,6 +82,34 @@ namespace LazyEagerLoadingEF
                     }
                     
                 }
+            }
+            Console.WriteLine();
+            Console.WriteLine("#####################");
+            Console.WriteLine();
+            using (var context = new LibraryContext())
+            {
+                context.Configuration.LazyLoadingEnabled = false;
+                var books = context.Books.ToList();
+                context.Authors.Load();
+                foreach (var book in books)
+                {
+                    Console.WriteLine(book.Title + " Author: " + book.Author.Name);
+                }
+
+            }
+            Console.WriteLine();
+            Console.WriteLine("#####################");
+            Console.WriteLine();
+            using (var context = new LibraryContext())
+            {
+                context.Configuration.LazyLoadingEnabled = false;
+                var books = context.Books.ToList();
+                foreach (var book in books)
+                {
+                    context.Entry<Book>(book).Reference<Author>(b => b.Author).Load();
+                    Console.WriteLine(book.Title + " Author: " + book.Author.Name);
+                }
+
             }
             using (var context = new LibraryContext())
             {
