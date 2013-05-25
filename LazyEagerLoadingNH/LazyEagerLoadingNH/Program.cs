@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Tool.hbm2ddl;
+using NHibernate.Transform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,55 @@ namespace FluentNHTest
                     {
                         Console.Out.WriteLine(a.Name + " books:");
                         foreach(Book b in a.Books) {
+                            Console.Out.WriteLine("\t" + b.Title);
+                        }
+                    }
+                }
+
+                // Eager loading examples
+                using (ISession session = sessionFactory.OpenSession())
+                {
+                    IList<Book> books = session.CreateCriteria<Book>().SetFetchMode("Author",FetchMode.Eager).List<Book>();
+                    
+                    foreach (Book b in books)
+                    {
+                        Console.Out.WriteLine(b.Title + " Author: " + b.Author.Name);
+                    }
+                }
+                using (ISession session = sessionFactory.OpenSession())
+                {
+                    IList<Author> authors = session.CreateCriteria<Author>().SetFetchMode("Books", FetchMode.Eager).List<Author>();
+                    foreach (Author a in authors)
+                    {
+                        Console.Out.WriteLine(a.Name + " books:");
+                        foreach (Book b in a.Books)
+                        {
+                            Console.Out.WriteLine("\t" + b.Title);
+                        }
+                    }
+                }
+                // Fixed multiple author occurences
+                using (ISession session = sessionFactory.OpenSession())
+                {
+                    IList<Author> authors = session.CreateCriteria<Author>().SetFetchMode("Books", FetchMode.Eager).SetResultTransformer(new DistinctRootEntityResultTransformer()).List<Author>();
+                    foreach (Author a in authors)
+                    {
+                        Console.Out.WriteLine(a.Name + " books:");
+                        foreach (Book b in a.Books)
+                        {
+                            Console.Out.WriteLine("\t" + b.Title);
+                        }
+                    }
+                }
+                // using QueryOver
+                using (ISession session = sessionFactory.OpenSession())
+                {
+                    IList<Author> authors = session.QueryOver<Author>().Fetch(a => a.Books).Eager.TransformUsing(Transformers.DistinctRootEntity).List();
+                    foreach (Author a in authors)
+                    {
+                        Console.Out.WriteLine(a.Name + " books:");
+                        foreach (Book b in a.Books)
+                        {
                             Console.Out.WriteLine("\t" + b.Title);
                         }
                     }
